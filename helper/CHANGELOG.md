@@ -1,3 +1,29 @@
+## 1.7.0
+
+ - **FEAT**(composition): add Composition API support with `CompositionSearcher` and `CompositionFacetSearcher`, including `FilterState`, `FacetList`, and Insights integration.
+
+## 1.6.0
+
+ - **FEAT**(response): add userData (#172).
+
+## 1.5.0
+
+ - **FEAT**(errors): add a cause to laundered exceptions (#168).
+
+## 1.4.0
+
+ - **FEAT**(search-state): support sortFacetValuesBy (#165).
+
+## 1.3.0
+
+ - **FEAT**(search-reponse): expose renderingContent in model.
+
+## 1.2.1
+
+ - **FIX**(pubspec): update algoliasearch dependency (#158).
+ - **FIX**(multiSearcher): forward error (#161).
+ - **FIX**(add*Searcher): debounce with constructor setting (#160).
+
 ## 1.2.0
 
  - **FIX**(client): remove invalid `maxFacetHits` in `SearchForHits` extension (#153).

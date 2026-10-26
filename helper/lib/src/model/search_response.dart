@@ -72,6 +72,15 @@ class SearchResponse extends MultiSearchResponse {
   /// This does not include network time.
   int get processingTimeMS => raw['processingTimeMS'] as int? ?? 0;
 
+  /// An object with custom data.  You can store up to 32kB as custom data.
+  Object userData() => raw['userData'] as Object? ?? {};
+
+  /// Defines how you want to render results in the search interface.
+  RenderingContent? get renderingContent => raw['renderingContent'] != null
+      ? RenderingContent.fromJson(
+          raw['renderingContent'] as Map<String, dynamic>)
+      : null;
+
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
@@ -98,8 +107,8 @@ class Hit extends DelegatingMap<String, dynamic> {
   }
 
   /// Creates List of [Hit] from [data].
-  static List<Hit> _fromList(data) {
-    final hits = data as List?;
+  static List<Hit> _fromList(List<dynamic>? data) {
+    final hits = data;
     if (hits == null) return const [];
     return List<Map>.from(hits).map(Hit._from).toList();
   }

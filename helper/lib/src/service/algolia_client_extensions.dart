@@ -11,14 +11,14 @@ extension ClientHelperAdapter on algolia.SearchClient {
   Exception launderException(dynamic error) =>
       error is algolia.AlgoliaApiException
           ? error.toSearchError()
-          : Exception(error);
+          : SearchError({'message': error.toString()}, 0, error);
 }
 
 /// Extensions over [AlgoliaException].
 extension AlgoliaExceptionExt on algolia.AlgoliaApiException {
   /// Converts API error to [SearchError].
   SearchError toSearchError() =>
-      SearchError({'message': error.toString()}, statusCode);
+      SearchError({'message': error.toString()}, statusCode, this);
 }
 
 extension AlgolisSearchStateExt on SearchState {
@@ -44,6 +44,7 @@ extension AlgolisSearchStateExt on SearchState {
       page: page,
       query: query,
       ruleContexts: ruleContexts,
+      sortFacetValuesBy: sortFacetValuesBy,
       sumOrFiltersScores: sumOrFiltersScore,
       tagFilters: tagFilters,
       userToken: userToken,
@@ -91,6 +92,7 @@ extension AlgolisFacetSearchStateExt on FacetSearchState {
       page: searchState.page,
       query: searchState.query,
       ruleContexts: searchState.ruleContexts,
+      sortFacetValuesBy: searchState.sortFacetValuesBy,
       sumOrFiltersScores: searchState.sumOrFiltersScore,
       tagFilters: searchState.tagFilters,
       userToken: searchState.userToken,
